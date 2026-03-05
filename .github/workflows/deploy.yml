@@ -1,0 +1,22 @@
+name:DeployStaticSite
+
+on:
+push:
+branches: [ "main" ]   # Runs when code is pushed to main
+
+permissions:
+contents:write
+
+jobs:
+deploy:
+runs-on:ubuntu-latest
+
+steps:
+-name:CheckoutRepository
+uses:actions/checkout@v4
+
+-name:DeploytoGitHubPages
+uses:peaceiris/actions-gh-pages@v4
+with:
+github_token:${{secrets.GITHUB_TOKEN}}
+publish_dir:./
